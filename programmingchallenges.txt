@@ -1,0 +1,8 @@
+Bullet cooldown (fixed)
+
+Bullet out of bounds; never deleted
+
+Ship out of bounds (horizontal and vertical)
+	Vertical - prevent from leaving bounds, update ship so that it moves with the camera.
+	Horizontal - prevent from leaving bounds
+
