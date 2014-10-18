@@ -1,0 +1,56 @@
+Title ideas:
+Space Chase
+Spiral Shootout
+Rounda-Bout
+
+
+List of power ups and enemies for phase 1
+
+
+Phase I = PvE, top down, auto-scrolling shooter. Players can move horizontally (and possibly vertically). 
+Phase II = PvP duel. For now, I will assume that players can can only move horizontally, in a radial manner.
+
+If we implement a horizontal (radial) combat system in Phase II, then it may be a good idea that Phase I should only permit horizontal movement. Good symmetry.
+
+Health:
+Health is shared between Phase I and Phase II?
+Could implement a shield/hull mechanic.
+
+Mechanics:
+Shoot
+	Can the players charge their shots? Strategic timing in PvP.
+Move
+Shield?
+	Possibly, a breakable shield that players can use, like Smash Bros. 
+Special?
+
+
+
+Power Ups:
+Health Boost = Increase your health.
+Speed Boost = Increase your horizontal speed in Phase I, radial speed in Phase II.
+Attack Boost = Increase the power of your shots
+Defense Boost = Increase the strength of your shield
+
+Specials:
+  
+
+
+Enemies:
+The "personality" of the enemies will really depend on the artistic theming we choose. 
+For example, if, lets say, we are Galactic Space Knights, and that we are meeting at the center of the universe to do a climactic joust.
+In that case, enemies can be medieval themed, or even chess themed (ie, pawn, bishop, rook, etc.). 
+The chess theme is interesting to me, because it could even dictate how the enemies move and fire. For example, rooks move and fire vertically and horizontally, bishops can move and shoot diagonally, pawns have limited movement and attack range, etc.
+
+
+
+
+
+Phase I - auto scroll, top down, can move both horizontally and vertically. No aiming.
+Phase II - Circular arena, can aim with one stick and move with another.
+
+
+
+
+
+
