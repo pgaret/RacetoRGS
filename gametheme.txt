@@ -46,8 +46,15 @@ The chess theme is interesting to me, because it could even dictate how the enem
 
 
 
+Difficulty levels for Phase I.
+
+
 Phase I - auto scroll, top down, can move both horizontally and vertically. No aiming.
-Phase II - Circular arena, can aim with one stick and move with another.
+Phase II - Circular arena, can aim with one stick and move with another. Maintain damage from phase I.
+
+
+Health bar with enough health for most people to reach the goal at normal difficulty.
+
 
 
 
