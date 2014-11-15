@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 8f5614aa1baa5fe4ea55f33a705d5a75
+guid: 975329a2c890e3e4bba284679753c92f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: White
+    21300000: GameOver
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

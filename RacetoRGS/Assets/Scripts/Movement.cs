@@ -11,11 +11,29 @@ public class Movement : MonoBehaviour {
 	//Attack Timer 1
 	float attackCD1 = .2f;
 	float attackTimer1;
+	// Ship health 2
+	public float shipHealth1 = 100.0f;
+	// Multiplier for damage
+	public float handicap1 = 1.0f;
+	// Score
+	public static float score1 = 0.0f;
+
 	//Attacker Time 2
 	float attackCD2 = .2f;
 	float attackTimer2;
+	// Ship health 2
+	public float shipHealth2 = 100.0f;
+	// Multiplier for damage
+	public float handicap2 = 1.0f;
+	// Score
+	public static float score2 = 0.0f;
+
+	// Who won the game?
+	public static int winner = 0; //0 = undecided, 1 = player 1, 2 = player 2
 
 	int playerNumber;
+
+	const float EPSILON = 0.00001f;
 
 	// Use this for initialization
 	void Start () {
@@ -59,8 +77,16 @@ public class Movement : MonoBehaviour {
 				Instantiate(bullet, transform.position, Quaternion.identity);
 				attackTimer2 = Time.time + attackCD2;
 			}
+
 		}
 
-	
+		if (shipHealth2 <= EPSILON)
+		{
+			winner = 1;
+			Application.LoadLevel("GameOver");
+		} else if (shipHealth1 <= EPSILON) {
+			winner = 2;
+			Application.LoadLevel("GameOver");
+		}
 	}
 }
