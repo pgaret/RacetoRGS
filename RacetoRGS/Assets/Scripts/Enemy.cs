@@ -28,18 +28,17 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		spots.Clear();
 		if (player != null && spots.Count == 0)
 		{
 			if (player.name == "PlayerRed")
 			{
-				transform.tag = "Enemy2";
 				spots.Add(GameObject.Find ("A0").transform.position); spots.Add(GameObject.Find ("A1").transform.position);spots.Add(GameObject.Find ("A2").transform.position);
 				spots.Add(GameObject.Find ("A3").transform.position); spots.Add(GameObject.Find ("A4").transform.position);spots.Add(GameObject.Find ("A5").transform.position);
 				spots.Add(GameObject.Find ("A6").transform.position); spots.Add(GameObject.Find ("A7").transform.position);spots.Add(GameObject.Find ("A8").transform.position);
 			}
 			else
 			{
-				transform.tag = "Enemy1";
 				spots.Add(GameObject.Find ("B0").transform.position); spots.Add(GameObject.Find ("B1").transform.position);spots.Add(GameObject.Find ("B2").transform.position);
 				spots.Add(GameObject.Find ("B3").transform.position); spots.Add(GameObject.Find ("B4").transform.position);spots.Add(GameObject.Find ("B5").transform.position);
 				spots.Add(GameObject.Find ("B6").transform.position); spots.Add(GameObject.Find ("B7").transform.position);spots.Add(GameObject.Find ("B8").transform.position);

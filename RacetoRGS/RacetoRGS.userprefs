@@ -1,12 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\PlayerStats.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyManager1.cs">
     <Files>
-      <File FileName="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\PlayerStats.cs" Line="180" Column="37" />
-      <File FileName="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\DeadEnemy.cs" Line="13" Column="40" />
-      <File FileName="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\Enemy.cs" Line="193" Column="3" />
-      <File FileName="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\InputManager.cs" Line="29" Column="1" />
-      <File FileName="..\..\EGDP3\EDGP3\Assets\Peregrin's Work\Scripts\GUIManager.cs" Line="109" Column="85" />
+      <File FileName="Assets\Scripts\EnemyManager1.cs" Line="56" Column="4" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="51" Column="29" />
+      <File FileName="Assets\Scripts\Main.cs" Line="38" Column="3" />
+      <File FileName="Assets\Scripts\Bullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="17" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

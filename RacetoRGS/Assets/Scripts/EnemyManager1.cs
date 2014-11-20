@@ -14,18 +14,11 @@ public class EnemyManager1 : MonoBehaviour {
 	public float levelCD;
 	float levelTimer;
 	
-	public GameObject player1;
-	public GameObject player2;
-	
-	GameObject player;
+	public GameObject player;
 
 	// Use this for initialization
 	void Start ()
 	{
-		if (playerNumber == 1) player = player1;
-		else player = player2;
-		
-		Debug.Log (player.name);
 
 	}
 	
@@ -36,11 +29,7 @@ public class EnemyManager1 : MonoBehaviour {
 		if (GameObject.FindGameObjectsWithTag("Enemy1").Length == 0 && playerNumber == 1)
 		{
 			SpawnWave();
-		}	
-		if (GameObject.FindGameObjectsWithTag("Enemy2").Length == 0 && playerNumber == 2)
-		{
-			SpawnWave();
-		}	
+		}
 	}
 	
 	void SpawnWave()
@@ -48,13 +37,15 @@ public class EnemyManager1 : MonoBehaviour {
 		if (i == 0)
 		{
 			GameObject enemy = Instantiate(enemy1, GameObject.Find ("B3").transform.position, Quaternion.identity) as GameObject;
-			Debug.Log (GameObject.Find ("B3").transform.position+" "+enemy1.transform.position);
-			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("53");
+			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("53");enemy.transform.tag = "Enemy1";
+			enemy = Instantiate(enemy1, GameObject.Find ("B5").transform.position, Quaternion.identity) as GameObject;
+			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("41");enemy.transform.tag = "Enemy1";
+			enemy = Instantiate(enemy1, GameObject.Find ("B5").transform.position, Quaternion.identity) as GameObject;
+			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("41");enemy.transform.tag = "Enemy1";		
 		}
 		if (i == 1)
 		{
-			GameObject enemy = Instantiate(enemy1) as GameObject;
-			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("34543");
+		
 		}
 		i++;
 	}
