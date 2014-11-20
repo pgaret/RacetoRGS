@@ -7,13 +7,9 @@ public class EnemyManager1 : MonoBehaviour {
 	public int i = 0;
 	
 	public int playerNumber;
-	public int waves;
 	
 	public GameObject enemy1;
 	public GameObject enemy2;
-	
-	int[] enemy1Waves;
-	int[] enemy2Waves;
 	
 	public float levelCD;
 	float levelTimer;
@@ -29,41 +25,38 @@ public class EnemyManager1 : MonoBehaviour {
 		if (playerNumber == 1) player = player1;
 		else player = player2;
 		
-		enemy1Waves = new int[waves];
-		enemy2Waves = new int[waves];
-		//Wave 1
-		enemy1Waves[0] = 1;
-		enemy2Waves[0] = 2;
-		//Wave 2
-		enemy1Waves[1] = 3;
-		enemy2Waves[1] = 4;
-		SpawnEnemies();
-		
+		Debug.Log (player.name);
 
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log (GameObject.FindGameObjectsWithTag("Enemy").Length);
-		if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+//		Debug.Log (GameObject.FindGameObjectsWithTag("Enemy").Length);
+		if (GameObject.FindGameObjectsWithTag("Enemy1").Length == 0 && playerNumber == 1)
 		{
-			i++;
-			SpawnEnemies();
+			SpawnWave();
+		}	
+		if (GameObject.FindGameObjectsWithTag("Enemy2").Length == 0 && playerNumber == 2)
+		{
+			SpawnWave();
 		}	
 	}
 	
-	void SpawnEnemies()
+	void SpawnWave()
 	{
-		for (int j = 0; j < enemy1Waves[i]; j++)
+		if (i == 0)
+		{
+			GameObject enemy = Instantiate(enemy1, GameObject.Find ("B3").transform.position, Quaternion.identity) as GameObject;
+			Debug.Log (GameObject.Find ("B3").transform.position+" "+enemy1.transform.position);
+			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("53");
+		}
+		if (i == 1)
 		{
 			GameObject enemy = Instantiate(enemy1) as GameObject;
-			enemy.GetComponent<Enemy>().OnCreation(player);
+			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("34543");
 		}
-		for (int j = 0; j < enemy2Waves[i]; j++)
-		{
-			GameObject enemy = Instantiate(enemy2) as GameObject;
-			enemy.GetComponent<Enemy>().OnCreation(player);
-		}
+		i++;
 	}
+	
 }

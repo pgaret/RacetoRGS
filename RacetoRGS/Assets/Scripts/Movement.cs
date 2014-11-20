@@ -43,6 +43,8 @@ public class Movement : MonoBehaviour {
 		
 		attackTimer1 = Time.time;
 		attackTimer2 = Time.time;
+		
+//		GetComponent<Animator>().speed = .1f;
 	
 	}
 	
