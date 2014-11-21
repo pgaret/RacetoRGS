@@ -6,8 +6,12 @@ public class PvP : MonoBehaviour {
 	public int speed;
 	public int damage;
 	public int spread;
-	public int health;
+	public float health;
 	public int lives;
+	
+	private float maxHealth;
+	
+	public bool isDead = false;
 	
 	public int playerNumber;
 	public float rotateSpeed;
@@ -18,6 +22,8 @@ public class PvP : MonoBehaviour {
 	float attackTimer;
 	
 	private float tiltAngle = 30;
+	
+	GameObject data;
 	
 	GameObject top;
 	GameObject down;
@@ -32,26 +38,43 @@ public class PvP : MonoBehaviour {
 		left = GameObject.Find ("Left");
 		right = GameObject.Find ("Right");
 		
+		data = GameObject.Find ("Theme");
+		
 		if (playerNumber == 1)
 		{
-			damage = PlayerPrefs.GetInt("player1damage");
-			health = PlayerPrefs.GetInt ("player1health");
-			lives = PlayerPrefs.GetInt ("player1lives");
-			spread = PlayerPrefs.GetInt ("player1spread");
+			for (int i = 0; i < data.GetComponent<Data>().player1Stats.Count; i++)
+			{
+				if (i == 0 || i == 4 || i == 8 || i == 12) lives += 1;
+				if (i == 1 || i == 5 || i == 9 || i == 13) health += 20;
+				if (i == 2 || i == 6 || i == 10 || i == 14) damage += 1;
+				if (i == 3 || i == 7 || i == 11 || i == 15) spread += 1;
+			}
 		}
 		
 		else
 		{
-			damage = PlayerPrefs.GetInt("player2damage");
-			health = PlayerPrefs.GetInt ("player2health");
-			lives = PlayerPrefs.GetInt ("player2lives");
-			spread = PlayerPrefs.GetInt ("player2spread");
+			for (int i = 0; i < data.GetComponent<Data>().player2Stats.Count; i++)
+			{
+				if (i == 0 || i == 4 || i == 8 || i == 12) lives += 1;
+				if (i == 1 || i == 5 || i == 9 || i == 13) health += 20;
+				if (i == 2 || i == 6 || i == 10 || i == 14) damage += 1;
+				if (i == 3 || i == 7 || i == 11 || i == 15) spread += 1;
+			}
 		}
+		
+		maxHealth = health;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		if (health <= 0 && lives > 0)
+		{
+			lives -= 1;
+			health = maxHealth;
+		}
+		if (lives <= 0 && health <= 0) isDead = true;
+	
 		if (playerNumber == 1)
 		{
 			//Player1 movement
@@ -77,7 +100,7 @@ public class PvP : MonoBehaviour {
 			{
 				if (bullets[i].renderer.bounds.Intersects(renderer.bounds))
 				{
-					health -= 1;
+					health -= bullets[i].GetComponent<Bullet>().damage;
 					Destroy (bullets[i].gameObject);
 				}
 			}
@@ -107,7 +130,7 @@ public class PvP : MonoBehaviour {
 			{
 				if (bullets[i].renderer.bounds.Intersects(renderer.bounds))
 				{
-					health -= 1;
+					health -= bullets[i].GetComponent<Bullet>().damage;
 					Destroy (bullets[i].gameObject);
 				}
 			}

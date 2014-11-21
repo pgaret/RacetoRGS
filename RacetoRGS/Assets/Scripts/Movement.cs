@@ -21,8 +21,8 @@ public class Movement : MonoBehaviour {
 	public float damage;
 	//Shots shots shots shots shots
 	public int spread;
-	//Add-ons
-	public List<int> bonuses = new List<int>();
+	//Add-ons & sound
+	GameObject infinite;
 	//Am I dead yet?
 	public bool isDead = false;
 	//Boundaries for movement

@@ -56,15 +56,6 @@ public class Main : MonoBehaviour {
 		
 		if (gameObject.GetComponent<EnemyManager1>().i >= 5 && gameObject.GetComponent<EnemyManager2>().i >= 5 && GameObject.FindGameObjectsWithTag("Enemy1").Length == 0 && GameObject.FindGameObjectsWithTag("Enemy2").Length == 0 || (player1.GetComponent<Movement>().isDead && player2.GetComponent<Movement>().isDead))
 		{
-			PlayerPrefs.SetFloat("player1health", player1.GetComponent<Movement>().shipHealth);
-			PlayerPrefs.SetFloat("player1damage", player1.GetComponent<Movement>().damage);
-			PlayerPrefs.SetFloat("player1lives", player1.GetComponent<Movement>().lives);
-			PlayerPrefs.SetFloat("player1spread", player1.GetComponent<Movement>().spread);
-			PlayerPrefs.SetFloat("player2health", player2.GetComponent<Movement>().shipHealth);
-			PlayerPrefs.SetFloat("player2damage", player2.GetComponent<Movement>().damage);
-			PlayerPrefs.SetFloat("player2lives", player2.GetComponent<Movement>().lives);
-			PlayerPrefs.SetFloat("player2spread", player2.GetComponent<Movement>().spread);
-			
 			Application.LoadLevel ("pvp");
 		}
 	}

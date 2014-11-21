@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PvP.cs">
     <Files>
-      <File FileName="Assets\Scripts\PvP.cs" Line="87" Column="25" />
-      <File FileName="Assets\Scripts\Pvpmain.cs" Line="16" Column="29" />
-      <File FileName="Assets\Scripts\GameOver.cs" Line="17" Column="3" />
-      <File FileName="Assets\Scripts\Movement.cs" Line="84" Column="3" />
-      <File FileName="Assets\Scripts\Main.cs" Line="29" Column="21" />
-      <File FileName="Assets\Scripts\EnemyManager2.cs" Line="35" Column="4" />
+      <File FileName="Assets\Scripts\Bullet.cs" Line="28" Column="36" />
+      <File FileName="Assets\Scripts\PvP.cs" Line="12" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

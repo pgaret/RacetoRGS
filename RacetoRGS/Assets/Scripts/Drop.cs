@@ -8,12 +8,15 @@ public class Drop : MonoBehaviour {
 	
 	GameObject player1;
 	GameObject player2;
+	
+	GameObject infinite;
 
 	// Use this for initialization
 	void Start ()
 	{
 		player1 = GameObject.Find ("playerone");
 		player2 = GameObject.Find ("playertwo");
+		infinite = GameObject.Find ("Theme");
 	}
 	
 	// Update is called once per frame
@@ -41,7 +44,7 @@ public class Drop : MonoBehaviour {
 			if (type == 14) player1.GetComponent<Movement>().shipHealth += 25;
 			if (type == 15) player1.GetComponent<Movement>().lives += 1;
 			if (type == 16) player1.GetComponent<Movement>().spread += 1;
-			player1.GetComponent<Movement>().bonuses.Add (type);
+			infinite.GetComponent<Data>().player1Stats.Add (type);
 			Destroy (gameObject);
 		}
 		if (player2.renderer.bounds.Intersects(renderer.bounds))
@@ -62,7 +65,7 @@ public class Drop : MonoBehaviour {
 			if (type == 14) player2.GetComponent<Movement>().shipHealth += 25;
 			if (type == 15) player2.GetComponent<Movement>().lives += 1;
 			if (type == 16) player2.GetComponent<Movement>().spread += 1;
-			player1.GetComponent<Movement>().bonuses.Add (type);
+			infinite.GetComponent<Data>().player2Stats.Add (type);
 			Destroy (gameObject);
 		}
 	}

@@ -24,12 +24,12 @@ public class Pvpmain : MonoBehaviour {
 	void Update ()
 	{
 
-		if (player1.GetComponent<PvP>().health == 0)
+		if (player1.GetComponent<PvP>().isDead == true)
 		{
 			PlayerPrefs.SetInt("winner", 2);
 			Application.LoadLevel("GameOver");
 		}
-		if (player2.GetComponent<PvP>().health == 0)
+		if (player2.GetComponent<PvP>().isDead == true)
 		{
 			PlayerPrefs.SetInt("winner", 1);
 			Application.LoadLevel ("GameOver");
