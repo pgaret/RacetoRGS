@@ -4,6 +4,7 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
 	public float speed = 5.0f;
+	public int damage;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour {
 		{
 			if (enemies[i].collider2D.bounds.Intersects(gameObject.collider.bounds))
 			{
-				enemies[i].GetComponent<Enemy>().health -= 1;
+				enemies[i].GetComponent<Enemy>().TakeDamage(damage);
 				Destroy (gameObject);
 			}
 		}

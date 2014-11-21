@@ -15,7 +15,8 @@ public class Movement : MonoBehaviour {
 	public float shipHealth = 100.0f;
 	// Score
 	public static float score = 0.0f;
-	
+	//Damage per shot
+	public int damage;
 	public GameObject top;
 	public GameObject down;
 	public GameObject left;
@@ -76,7 +77,8 @@ public class Movement : MonoBehaviour {
 			//Player1 fires a bullet with the left shift key
 			if (Input.GetButton ("Fire1") && Time.time > attackTimer)
 			{
-				Instantiate(bullet, transform.position, Quaternion.identity);
+				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
+				thebullet.GetComponent<Bullet>().damage = damage;
 				attackTimer = Time.time + attackCD;
 			}
 		}
@@ -91,7 +93,8 @@ public class Movement : MonoBehaviour {
 			//Player2 fires a bullet with the right shift key
 			if (Input.GetButton("Fire2") && Time.time > attackTimer)
 			{
-				Instantiate(bullet, transform.position, Quaternion.identity);
+				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
+				thebullet.GetComponent<Bullet>().damage = damage;
 				attackTimer = Time.time + attackCD;
 			}
 		}

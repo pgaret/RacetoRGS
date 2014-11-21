@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour {
 	public float firingRate;
 	float timer;
 	//Health
-	public float health;
+	public float maxHealth;
+	private float health;
 	//Speed
 	public float speed;
 	//What can we drop
@@ -26,7 +27,8 @@ public class Enemy : MonoBehaviour {
 	void Start ()
 	{
 		timer = Time.time;
-		
+		transform.GetChild(0).localScale = new Vector3(1, .1f);
+		health = maxHealth;
 	}
 	
 	
@@ -63,6 +65,13 @@ public class Enemy : MonoBehaviour {
 		if (currentPos == path.Count) Destroy(gameObject);
 		
 		if (health <= 0) Destroy (gameObject);
+		
+	}
+	
+	public void TakeDamage(int damage)
+	{
+		health -= damage;
+		transform.GetChild(0).localScale -= new Vector3(damage / maxHealth, 0);
 		
 	}
 	

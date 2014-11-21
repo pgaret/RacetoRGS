@@ -13,9 +13,14 @@ public class Main : MonoBehaviour {
 	public Transform player2;
 	//List of toMove
 	List<GameObject> toMove = new List<GameObject>();
+	//Sound Object
+	GameObject sound;
 	// Use this for initialization
 	void Start ()
 	{
+		sound = GameObject.Find ("Sound");
+		sound.GetComponent<SoundManager>().PlaySound("StarFall");
+		sound.GetComponent<SoundManager>().LoopSound("StarFall");
 		toMove.Add(GameObject.Find ("A0")); toMove.Add(GameObject.Find ("A1"));toMove.Add(GameObject.Find ("A2"));
 		toMove.Add(GameObject.Find ("A3")); toMove.Add(GameObject.Find ("A4"));toMove.Add(GameObject.Find ("A5"));
 		toMove.Add(GameObject.Find ("A6")); toMove.Add(GameObject.Find ("A7"));toMove.Add(GameObject.Find ("A8"));
@@ -25,6 +30,7 @@ public class Main : MonoBehaviour {
 		toMove.Add(GameObject.Find ("Top2")); toMove.Add(GameObject.Find ("Down2"));toMove.Add(GameObject.Find ("Left2"));
 		toMove.Add(GameObject.Find ("Right2")); toMove.Add(GameObject.Find ("Top1"));toMove.Add(GameObject.Find ("Left1"));
 		toMove.Add(GameObject.Find ("Right1")); toMove.Add(GameObject.Find ("Down1"));
+		toMove.Add(camR.gameObject); toMove.Add (camB.gameObject);
 	}
 	
 	void OnGUI()
@@ -40,8 +46,6 @@ public class Main : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{	
-		camB.transform.Translate(Vector3.up*Time.deltaTime);
-		camR.transform.Translate(Vector3.up*Time.deltaTime);
 		transform.Translate (Vector3.up*Time.deltaTime);
 		
 		for (int i = 0; i < toMove.Count; i++) toMove[i].transform.Translate (Vector2.up*Time.deltaTime);		

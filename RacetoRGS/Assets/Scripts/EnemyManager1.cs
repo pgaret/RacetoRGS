@@ -52,9 +52,9 @@ public class EnemyManager1 : MonoBehaviour {
 		}
 		if (i == 2)
 		{
-			GameObject enemy = Instantiate(enemy1, GameObject.Find ("B0").transform.position, Quaternion.identity) as GameObject;
+			GameObject enemy = Instantiate(enemy2, GameObject.Find ("B0").transform.position, Quaternion.identity) as GameObject;
 			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("82");enemy.transform.tag = "Enemy1";
-			enemy = Instantiate(enemy1, GameObject.Find ("B2").transform.position, Quaternion.identity) as GameObject;
+			enemy = Instantiate(enemy2, GameObject.Find ("B2").transform.position, Quaternion.identity) as GameObject;
 			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("60");enemy.transform.tag = "Enemy1";
 			enemy = Instantiate(enemy1, GameObject.Find ("B1").transform.position, Quaternion.identity) as GameObject;
 			enemy.GetComponent<Enemy>().player = player; enemy.GetComponent<Enemy>().CreatePath("71");enemy.transform.tag = "Enemy1";
