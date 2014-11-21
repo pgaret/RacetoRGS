@@ -89,16 +89,17 @@ public class Movement : MonoBehaviour {
 		{
 			//Player1 movement
 			if (Input.GetAxis("Vertical1") > 0 && transform.position.y < top.transform.position.y) transform.Translate(Vector3.up*Time.deltaTime*speed);
-			if (Input.GetAxis ("Horizontal1") < 0 && transform.position.x > left.transform.position.x) transform.Translate(Vector3.left*Time.deltaTime*speed);
+			if ((Input.GetAxis ("Horizontal1") < 0 || Input.GetKey(KeyCode.A)) && transform.position.x > left.transform.position.x) transform.Translate(Vector3.left*Time.deltaTime*speed);
 			if (Input.GetAxis ("Vertical1") < 0 && transform.position.y > down.transform.position.y) transform.Translate(Vector3.down*Time.deltaTime*speed);
-			if (Input.GetAxis ("Horizontal1") > 0 && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
-			if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) transform.Translate (Vector3.up*Time.deltaTime);
+			if ((Input.GetAxis ("Horizontal1") > 0 || Input.GetKey(KeyCode.D)) && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
+			if (Input.GetAxis("Vertical1") == 0) transform.Translate (Vector3.up*Time.deltaTime);
 			//Player1 fires a bullet with the left shift key
 			if (Time.time > attackTimer)
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
-				attackTimer = Time.time + attackCD;
+				thebullet.localScale += new Vector3(spread/100, spread/100);
+				attackTimer = Time.time + attackCD;	
 			}
 		}
 		else
@@ -114,6 +115,7 @@ public class Movement : MonoBehaviour {
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
+				thebullet.localScale += new Vector3(spread/100, spread/100);
 				attackTimer = Time.time + attackCD;
 			}
 		}

@@ -36,7 +36,7 @@ public class Main : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.Box (new Rect(0, Screen.height * 7 / 8, Screen.width, Screen.height / 8), "");
-		GUI.Label(new Rect(Screen.width * .1f / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Attack: "+player1.GetComponent<Movement>().attackRate+"\nSpeed");
+		GUI.Label(new Rect(Screen.width * .1f / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Attack: "+player1.GetComponent<Movement>().damage);
 		GUI.Label(new Rect(Screen.width * 1.1f / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Health: "+player1.GetComponent<Movement>().shipHealth);
 		GUI.Label(new Rect(Screen.width * 2.1f / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Lives: "+player1.GetComponent<Movement>().lives);
 		GUI.Label(new Rect(Screen.width * 3.1f / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Score: "+player1.GetComponent<Movement>().score);

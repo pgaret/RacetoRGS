@@ -87,10 +87,11 @@ public class PvP : MonoBehaviour {
 			if (Input.GetAxis("Rotate1") > 0) transform.Rotate (Vector3.forward*rotateSpeed);
 			if (Input.GetAxis("Rotate1") < 0) transform.Rotate (-Vector3.forward*rotateSpeed);
 			//Player1 fires a bullet with the left shift key
-			if (Input.GetButton ("Fire1") && Time.time > attackTimer)
+			if (Time.time > attackTimer)
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
+				thebullet.localScale += new Vector3(.5f*spread, .5f*spread);
 				thebullet.rotation = transform.rotation;
 				attackTimer = Time.time + attackCD;
 			}
@@ -117,10 +118,11 @@ public class PvP : MonoBehaviour {
 			if (Input.GetAxis("Rotate2") > 0) transform.Rotate (Vector3.forward*rotateSpeed);
 			if (Input.GetAxis("Rotate2") < 0) transform.Rotate (-Vector3.forward*rotateSpeed);
 			//Player2 fires a bullet with the right shift key
-			if (Input.GetButton("Fire2") && Time.time > attackTimer)
+			if (Time.time > attackTimer)
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
+				thebullet.localScale += new Vector3(.5f*spread, .5f*spread);
 				thebullet.rotation = transform.rotation;
 				attackTimer = Time.time + attackCD;
 			}
