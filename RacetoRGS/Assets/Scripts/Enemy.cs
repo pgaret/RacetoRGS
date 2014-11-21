@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour {
 	//Speed
 	public float speed;
 	//What can we drop
-	public Transform[] drops;
+	public Transform drop;
 	//What path are we taking
 	private List<Vector3> spots = new List<Vector3>();
 	private List<double> path = new List<double>();
@@ -35,11 +35,10 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		transform.rotation = Quaternion.LookRotation(Vector3.forward);
 		spots.Clear();
 		if (player != null && spots.Count == 0)
 		{
-			if (player.name == "PlayerRed")
+			if (player.name == "playertwo")
 			{
 				spots.Add(GameObject.Find ("A0").transform.position); spots.Add(GameObject.Find ("A1").transform.position);spots.Add(GameObject.Find ("A2").transform.position);
 				spots.Add(GameObject.Find ("A3").transform.position); spots.Add(GameObject.Find ("A4").transform.position);spots.Add(GameObject.Find ("A5").transform.position);
@@ -64,15 +63,19 @@ public class Enemy : MonoBehaviour {
 		if (transform.position == goal) currentPos += 1;
 		if (currentPos == path.Count) Destroy(gameObject);
 		
-		if (health <= 0) Destroy (gameObject);
+		if (health <= 0)
+		{
+			Destroy (gameObject);
+			Transform theDrop = (Transform)Instantiate (drop, transform.position, Quaternion.identity);
+			theDrop.GetComponent<Drop>().type = Random.Range (0, 16);
+		}
 		
 	}
 	
-	public void TakeDamage(int damage)
+	public void TakeDamage(float damage)
 	{
 		health -= damage;
 		transform.GetChild(0).localScale -= new Vector3(damage / maxHealth, 0);
-		
 	}
 	
 	public void CreatePath(string thePath)

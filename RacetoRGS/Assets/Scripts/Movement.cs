@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Movement : MonoBehaviour {
 
@@ -7,16 +8,24 @@ public class Movement : MonoBehaviour {
 	public float speed;
 	//Bullet to be fired
 	public Transform bullet;
-	//Attack Timer 1
+	//Attack Timer
 	public float attackRate = 0;
 	float attackCD = .2f;
 	float attackTimer;
-	// Ship health 2
+	// Ship health
 	public float shipHealth = 100.0f;
+	public float lives = 5;
 	// Score
-	public static float score = 0.0f;
+	public float score = 0.0f;
 	//Damage per shot
-	public int damage;
+	public float damage;
+	//Shots shots shots shots shots
+	public int spread;
+	//Add-ons
+	public List<int> bonuses = new List<int>();
+	//Am I dead yet?
+	public bool isDead = false;
+	//Boundaries for movement
 	public GameObject top;
 	public GameObject down;
 	public GameObject left;
@@ -59,11 +68,21 @@ public class Movement : MonoBehaviour {
 			{
 				if (bullets[i].collider2D.bounds.Intersects(gameObject.collider2D.bounds))
 				{
-					shipHealth -= 1;
+					if (bullets[i].name == "EnemyBullet(Clone)") shipHealth -= 50;
+					else shipHealth -= 25;
 					Destroy (bullets[i].gameObject);
 				}
 				
 			}
+		}
+		if (lives > 0 && shipHealth <= 0)
+		{
+			lives -= 1;
+			shipHealth = 100;
+		}
+		if (lives <= 0 && shipHealth <= 0)
+		{
+			isDead = true;
 		}
 		
 		if (playerNumber == 1)
@@ -75,7 +94,7 @@ public class Movement : MonoBehaviour {
 			if (Input.GetAxis ("Horizontal1") > 0 && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
 			if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) transform.Translate (Vector3.up*Time.deltaTime);
 			//Player1 fires a bullet with the left shift key
-			if (Input.GetButton ("Fire1") && Time.time > attackTimer)
+			if (Time.time > attackTimer)
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
@@ -91,7 +110,7 @@ public class Movement : MonoBehaviour {
 			if (Input.GetAxis ("Horizontal2") > 0 && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
 			if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) transform.Translate (Vector3.up*Time.deltaTime);
 			//Player2 fires a bullet with the right shift key
-			if (Input.GetButton("Fire2") && Time.time > attackTimer)
+			if (Time.time > attackTimer)
 			{
 				Transform thebullet = (Transform)Instantiate(bullet, transform.position, Quaternion.identity);
 				thebullet.GetComponent<Bullet>().damage = damage;
