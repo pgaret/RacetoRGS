@@ -11,8 +11,12 @@ public class Enemy : MonoBehaviour {
 	//How many shots per unit time do we fire	
 	public float firingRate;
 	float timer;
+	//Health
+	public float health;
 	//Speed
 	public float speed;
+	//What can we drop
+	public Transform[] drops;
 	//What path are we taking
 	private List<Vector3> spots = new List<Vector3>();
 	private List<double> path = new List<double>();
@@ -22,12 +26,14 @@ public class Enemy : MonoBehaviour {
 	void Start ()
 	{
 		timer = Time.time;
+		
 	}
 	
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		transform.rotation = Quaternion.LookRotation(Vector3.forward);
 		spots.Clear();
 		if (player != null && spots.Count == 0)
 		{
@@ -56,6 +62,8 @@ public class Enemy : MonoBehaviour {
 		if (transform.position == goal) currentPos += 1;
 		if (currentPos == path.Count) Destroy(gameObject);
 		
+		if (health <= 0) Destroy (gameObject);
+		
 	}
 	
 	public void CreatePath(string thePath)
@@ -63,7 +71,6 @@ public class Enemy : MonoBehaviour {
 		for (int i = 0; i < thePath.Length; i++)
 		{
 			path.Add (char.GetNumericValue(thePath[i]));
-			Debug.Log (path[i]);
 		}
 	}
 }

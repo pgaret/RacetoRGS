@@ -4,36 +4,24 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
 	//Speed of movement
-	public float speed = 10.0f;
+	public float speed;
 	//Bullet to be fired
 	public Transform bullet;
-	
 	//Attack Timer 1
-	float attackCD1 = .2f;
-	float attackTimer1;
+	public float attackRate = 0;
+	float attackCD = .2f;
+	float attackTimer;
 	// Ship health 2
-	public float shipHealth1 = 100.0f;
-	// Multiplier for damage
-	public float handicap1 = 1.0f;
+	public float shipHealth = 100.0f;
 	// Score
-	public static float score1 = 0.0f;
-
-	//Attacker Time 2
-	float attackCD2 = .2f;
-	float attackTimer2;
-	// Ship health 2
-	public float shipHealth2 = 100.0f;
-	// Multiplier for damage
-	public float handicap2 = 1.0f;
-	// Score
-	public static float score2 = 0.0f;
-
-	// Who won the game?
-	public static int winner = 0; //0 = undecided, 1 = player 1, 2 = player 2
-
+	public static float score = 0.0f;
+	
+	public GameObject top;
+	public GameObject down;
+	public GameObject left;
+	public GameObject right;
+	
 	int playerNumber;
-
-	const float EPSILON = 0.00001f;
 
 	// Use this for initialization
 	void Start () {
@@ -41,54 +29,71 @@ public class Movement : MonoBehaviour {
 		if (gameObject.tag == "Player1") playerNumber = 1;
 		else playerNumber = 2;
 		
-		attackTimer1 = Time.time;
-		attackTimer2 = Time.time;
+		attackTimer = Time.time;
 		
-//		GetComponent<Animator>().speed = .1f;
+		if (playerNumber == 1)
+		{
+			top = GameObject.Find ("Top1");
+			down = GameObject.Find ("Down1");
+			left = GameObject.Find ("Left1");
+			right = GameObject.Find ("Right1");
+		}
+		else
+		{
+			top = GameObject.Find ("Top2");
+			down = GameObject.Find ("Down2");
+			left = GameObject.Find ("Left2");
+			right = GameObject.Find ("Right2");
+		}
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		attackRate = 1 / attackCD;
+		
+		GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBullet");
+		{
+			for (int i = 0; i < bullets.Length; i++)
+			{
+				if (bullets[i].collider2D.bounds.Intersects(gameObject.collider2D.bounds))
+				{
+					shipHealth -= 1;
+					Destroy (bullets[i].gameObject);
+				}
+				
+			}
+		}
+		
 		if (playerNumber == 1)
 		{
-			//Player1 movement based on input from WASD
-			if (Input.GetKey(KeyCode.W)) transform.Translate(Vector3.up*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.A)) transform.Translate(Vector3.left*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.S)) transform.Translate(Vector3.down*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.D)) transform.Translate(Vector3.right*Time.deltaTime*speed);
+			//Player1 movement
+			if (Input.GetAxis("Vertical1") > 0 && transform.position.y < top.transform.position.y) transform.Translate(Vector3.up*Time.deltaTime*speed);
+			if (Input.GetAxis ("Horizontal1") < 0 && transform.position.x > left.transform.position.x) transform.Translate(Vector3.left*Time.deltaTime*speed);
+			if (Input.GetAxis ("Vertical1") < 0 && transform.position.y > down.transform.position.y) transform.Translate(Vector3.down*Time.deltaTime*speed);
+			if (Input.GetAxis ("Horizontal1") > 0 && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
 			if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D)) transform.Translate (Vector3.up*Time.deltaTime);
 			//Player1 fires a bullet with the left shift key
-			if (Input.GetKey(KeyCode.LeftShift) && Time.time > attackTimer1)
+			if (Input.GetButton ("Fire1") && Time.time > attackTimer)
 			{
 				Instantiate(bullet, transform.position, Quaternion.identity);
-				attackTimer1 = Time.time + attackCD1;
+				attackTimer = Time.time + attackCD;
 			}
 		}
 		else
 		{
 			//Player2 movement based on arrow keys
-			if (Input.GetKey(KeyCode.UpArrow)) transform.Translate(Vector3.up*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.LeftArrow)) transform.Translate(Vector3.left*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.DownArrow)) transform.Translate(Vector3.down*Time.deltaTime*speed);
-			if (Input.GetKey(KeyCode.RightArrow)) transform.Translate(Vector3.right*Time.deltaTime*speed);
+			if (Input.GetAxis("Vertical2") > 0 && transform.position.y < top.transform.position.y) transform.Translate(Vector3.up*Time.deltaTime*speed);
+			if (Input.GetAxis ("Horizontal2") < 0 && transform.position.x > left.transform.position.x) transform.Translate(Vector3.left*Time.deltaTime*speed);
+			if (Input.GetAxis ("Vertical2") < 0 && transform.position.y > down.transform.position.y) transform.Translate(Vector3.down*Time.deltaTime*speed);
+			if (Input.GetAxis ("Horizontal2") > 0 && transform.position.x < right.transform.position.x) transform.Translate(Vector3.right*Time.deltaTime*speed);
 			if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) transform.Translate (Vector3.up*Time.deltaTime);
 			//Player2 fires a bullet with the right shift key
-			if (Input.GetKey(KeyCode.RightShift) && Time.time > attackTimer2)
+			if (Input.GetButton("Fire2") && Time.time > attackTimer)
 			{
 				Instantiate(bullet, transform.position, Quaternion.identity);
-				attackTimer2 = Time.time + attackCD2;
+				attackTimer = Time.time + attackCD;
 			}
-
-		}
-
-		if (shipHealth2 <= EPSILON)
-		{
-			winner = 1;
-			Application.LoadLevel("GameOver");
-		} else if (shipHealth1 <= EPSILON) {
-			winner = 2;
-			Application.LoadLevel("GameOver");
 		}
 	}
 }

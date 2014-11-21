@@ -8,17 +8,33 @@ public class Main : MonoBehaviour {
 	public Camera camB;
 	//Xamera over red ship
 	public Camera camR;
-	//List of spots
-	List<GameObject> spots = new List<GameObject>();
+	//players
+	public Transform player1;
+	public Transform player2;
+	//List of toMove
+	List<GameObject> toMove = new List<GameObject>();
 	// Use this for initialization
 	void Start ()
 	{
-		spots.Add(GameObject.Find ("A0")); spots.Add(GameObject.Find ("A1"));spots.Add(GameObject.Find ("A2"));
-		spots.Add(GameObject.Find ("A3")); spots.Add(GameObject.Find ("A4"));spots.Add(GameObject.Find ("A5"));
-		spots.Add(GameObject.Find ("A6")); spots.Add(GameObject.Find ("A7"));spots.Add(GameObject.Find ("A8"));
-		spots.Add(GameObject.Find ("B0")); spots.Add(GameObject.Find ("B1"));spots.Add(GameObject.Find ("B2"));
-		spots.Add(GameObject.Find ("B3")); spots.Add(GameObject.Find ("B4"));spots.Add(GameObject.Find ("B5"));
-		spots.Add(GameObject.Find ("B6")); spots.Add(GameObject.Find ("B7"));spots.Add(GameObject.Find ("B8"));
+		toMove.Add(GameObject.Find ("A0")); toMove.Add(GameObject.Find ("A1"));toMove.Add(GameObject.Find ("A2"));
+		toMove.Add(GameObject.Find ("A3")); toMove.Add(GameObject.Find ("A4"));toMove.Add(GameObject.Find ("A5"));
+		toMove.Add(GameObject.Find ("A6")); toMove.Add(GameObject.Find ("A7"));toMove.Add(GameObject.Find ("A8"));
+		toMove.Add(GameObject.Find ("B0")); toMove.Add(GameObject.Find ("B1"));toMove.Add(GameObject.Find ("B2"));
+		toMove.Add(GameObject.Find ("B3")); toMove.Add(GameObject.Find ("B4"));toMove.Add(GameObject.Find ("B5"));
+		toMove.Add(GameObject.Find ("B6")); toMove.Add(GameObject.Find ("B7"));toMove.Add(GameObject.Find ("B8"));
+		toMove.Add(GameObject.Find ("Top2")); toMove.Add(GameObject.Find ("Down2"));toMove.Add(GameObject.Find ("Left2"));
+		toMove.Add(GameObject.Find ("Right2")); toMove.Add(GameObject.Find ("Top1"));toMove.Add(GameObject.Find ("Left1"));
+		toMove.Add(GameObject.Find ("Right1")); toMove.Add(GameObject.Find ("Down1"));
+	}
+	
+	void OnGUI()
+	{
+		GUI.Box (new Rect(0, Screen.height * 7 / 8, Screen.width, Screen.height / 8), "");
+		GUI.Label(new Rect(Screen.width / 75, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Health: "+player1.GetComponent<Movement>().shipHealth);
+		GUI.Label(new Rect(Screen.width / 8, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Attack: "+player1.GetComponent<Movement>().attackRate+"\nSpeed");
+		GUI.Label(new Rect(Screen.width / 2, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Health: "+player2.GetComponent<Movement>().shipHealth);
+		GUI.Label(new Rect(Screen.width * 3.2f / 5, Screen.height * 7.25f / 8, Screen.width / 4, Screen.height / 8), "Attack: "+player2.GetComponent<Movement>().attackRate+"\nSpeed");
+		
 	}
 	
 	// Update is called once per frame
@@ -26,21 +42,9 @@ public class Main : MonoBehaviour {
 	{	
 		camB.transform.Translate(Vector3.up*Time.deltaTime);
 		camR.transform.Translate(Vector3.up*Time.deltaTime);
+		transform.Translate (Vector3.up*Time.deltaTime);
 		
-		for (int i = 0; i < spots.Count; i++) spots[i].transform.Translate (Vector2.up*Time.deltaTime);
-		
-		
-		
-		if (Input.GetButtonUp("A1")) Debug.Log("A1");
-		if (Input.GetButtonUp("B1")) Debug.Log("B1");
-		if (Input.GetButtonUp("X1")) Debug.Log("X1");
-		if (Input.GetButtonUp("Y1")) Debug.Log("Y1");
-		
-		if (Input.GetButtonUp("A2")) Debug.Log("A2");
-		if (Input.GetButtonUp("B2")) Debug.Log("B2");
-		if (Input.GetButtonUp("X2")) Debug.Log("X2");
-		if (Input.GetButtonUp("Y2")) Debug.Log("Y2");
-		
+		for (int i = 0; i < toMove.Count; i++) toMove[i].transform.Translate (Vector2.up*Time.deltaTime);		
 	}
 	
 

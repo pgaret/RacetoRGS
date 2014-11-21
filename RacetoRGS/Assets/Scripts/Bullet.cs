@@ -15,6 +15,16 @@ public class Bullet : MonoBehaviour {
 	
 		transform.Translate(Vector3.up*Time.deltaTime*speed);
 		if (!transform.renderer.isVisible) Destroy (gameObject);
+		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy1");
+		for (int i = 0; i < enemies.Length; i++)
+		{
+			if (enemies[i].collider2D.bounds.Intersects(gameObject.collider.bounds))
+			{
+				enemies[i].GetComponent<Enemy>().health -= 1;
+				Destroy (gameObject);
+			}
+		}
 	
 	}
 }
